@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+scikit-learn==1.3.2
+imbalanced-learn
+xgboost
+numpy
+streamlit
+requests
