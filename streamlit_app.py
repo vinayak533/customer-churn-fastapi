@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+from ollama import chat
 
 st.set_page_config(page_title="Customer Churn Predictor", layout="centered")
 
@@ -34,6 +35,8 @@ with st.form("churn_form"):
     monthly = st.number_input("Monthly Charges", min_value=0.0)
     total = st.number_input("Total Charges", min_value=0.0)
 
+    use_ai = st.checkbox("🤖 Generate AI explanation (Ollama)")
+
     submit = st.form_submit_button("Predict Churn")
 
 if submit:
@@ -63,7 +66,34 @@ if submit:
 
     if response.status_code == 200:
         result = response.json()
+
         st.success(f"Prediction: {result['churn_prediction']}")
         st.info(f"Churn Probability: {result['churn_probability']}")
+
+        # -------- OLLAMA EXPLANATION --------
+        if use_ai:
+            with st.spinner("Generating AI explanation..."):
+                prompt = f"""
+You are a data science assistant helping a telecom business team.
+
+Churn Prediction: {result['churn_prediction']}
+Churn Probability: {result['churn_probability']}
+
+Customer details:
+{payload}
+
+Explain why the customer is likely or unlikely to churn.
+Mention 2–3 key reasons and suggest ONE retention action.
+Use simple business language. Max 80 words.
+"""
+
+                ai_response = chat(
+                    model="gemma2:2b",
+                    messages=[{"role": "user", "content": prompt}]
+                )
+
+                st.subheader("🤖 AI Explanation (Ollama)")
+                st.write(ai_response["message"]["content"])
+
     else:
         st.error("Error connecting to API")
