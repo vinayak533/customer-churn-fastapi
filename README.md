@@ -1,45 +1,75 @@
-# Customer Churn Prediction – ML Deployment
+📉 Customer Churn Prediction – ML Deployment with Ollama
 
-An end-to-end Machine Learning project to predict customer churn, deployed using **FastAPI**, **Streamlit**, **Docker**, and **GitHub Actions CI/CD**.
+An end-to-end Machine Learning project to predict customer churn, deployed using FastAPI and Streamlit, with Ollama (Gemma 2B) integrated to provide AI-powered explanations for predictions.
 
----
+🚀 Overview
 
-## Overview
+This project predicts whether a customer is likely to churn based on their service usage and account details.
+It includes:
 
-This project serves a trained customer churn prediction model through:
-- A REST API built with FastAPI
-- A user-friendly web interface built with Streamlit
-- Dockerized deployment
-- Automated CI/CD pipeline using GitHub Actions
+A trained ML churn prediction model
 
----
+A FastAPI REST API for predictions
 
-## Tech Stack
+A Streamlit web application for user interaction
 
-- Python
-- Scikit-learn
-- FastAPI
-- Streamlit
-- Docker & Docker Compose
-- GitHub Actions (CI/CD)
+Ollama (Gemma 2B) for natural language explanations of predictions
 
----
+Dockerized setup and CI/CD ready structure
 
-## Project Structure
+🧠 Key Features
 
+📊 Predicts Customer Churn (Yes / No)
+
+📈 Returns Churn Probability
+
+🤖 Uses Ollama (Gemma 2B) to explain why the customer may churn
+
+🧩 Modular backend and frontend architecture
+
+🐳 Docker-ready for deployment
+
+🔁 CI/CD enabled using GitHub Actions
+
+🛠️ Tech Stack
+
+Python
+
+Scikit-learn
+
+FastAPI
+
+Streamlit
+
+Ollama (Gemma2:2B)
+
+Docker & Docker Compose
+
+GitHub Actions (CI/CD)
+
+🦙 What is Ollama used for?
+
+Ollama is used to run a local Large Language Model (Gemma 2B) that:
+
+Explains churn predictions in simple English
+
+Helps non-technical users understand model output
+
+Adds an AI assistant layer to a traditional ML system
+
+
+📁 Project Structure
 customer-churn-fastapi/
-├── app.py # FastAPI backend
-├── streamlit_app.py # Streamlit UI
-├── customer_churn_model.pkl # Trained ML model
-├── encoders.pkl # Encoders
+├── app.py                     # FastAPI backend
+├── streamlit_app.py           # Streamlit UI
+├── customer_churn_model.pkl   # Trained ML model
+├── encoders.pkl               # Feature encoders
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
-├── .github/workflows/ci.yml
+├── .github/workflows/ci.yml   # CI/CD pipeline
 └── README.md
 
-yaml
-Copy code
 
 ---
 
@@ -80,3 +110,4 @@ Author
 Vinayak K V
 BCA Graduate | Aspiring Data Scientist
 GitHub: https://github.com/vinayak533
+
