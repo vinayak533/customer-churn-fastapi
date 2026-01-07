@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import pandas as pd
 import pickle
+from ollama import chat
 
 # Initialize app
 app = FastAPI(title="Customer Churn Prediction API")
@@ -35,11 +36,38 @@ def predict_churn(data: dict):
     # Reorder columns
     input_df = input_df[feature_names]
 
-    # Prediction
+    # ML Prediction
     prediction = model.predict(input_df)[0]
     probability = model.predict_proba(input_df)[0][1]
 
+    churn_label = "Yes" if prediction == 1 else "No"
+    churn_prob = round(float(probability), 3)
+
+    # -------- OLLAMA EXPLANATION --------
+    prompt = f"""
+You are a data science assistant.
+
+Prediction result:
+Customer Churn: {churn_label}
+Churn Probability: {churn_prob}
+
+Customer data:
+{data}
+
+Explain the churn result in simple business language.
+Mention 2–3 key reasons and suggest one retention action.
+Limit response to 70 words.
+"""
+
+    ai_response = chat(
+        model="gemma2:2b",
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    explanation = ai_response["message"]["content"]
+
     return {
-        "churn_prediction": "Yes" if prediction == 1 else "No",
-        "churn_probability": round(float(probability), 3)
+        "churn_prediction": churn_label,
+        "churn_probability": churn_prob,
+        "ai_explanation": explanation
     }
