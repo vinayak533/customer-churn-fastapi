@@ -1,113 +1,164 @@
-📉 Customer Churn Prediction – ML Deployment with Ollama
+# 📉 Customer Churn Prediction System with FastAPI, Streamlit & Ollama
 
-An end-to-end Machine Learning project to predict customer churn, deployed using FastAPI and Streamlit, with Ollama (Gemma 2B) integrated to provide AI-powered explanations for predictions.
+## 📌 Summary
 
-🚀 Overview
+This project is an end-to-end Machine Learning deployment that predicts customer churn using an XGBoost model and provides AI-powered explanations using a local LLM (Gemma 2B via Ollama). The system includes a FastAPI backend, Streamlit frontend, Docker deployment, and CI/CD pipeline for production-ready ML serving.
 
-This project predicts whether a customer is likely to churn based on their service usage and account details.
-It includes:
+---
 
-A trained ML churn prediction model
+## 🛠️ Technologies Used
 
-A FastAPI REST API for predictions
+* Python
+* Scikit-learn / XGBoost
+* FastAPI
+* Streamlit
+* Ollama (Gemma 2B LLM)
+* Docker & Docker Compose
+* GitHub Actions (CI/CD)
+* Pandas & NumPy
 
-A Streamlit web application for user interaction
+---
 
-Ollama (Gemma 2B) for natural language explanations of predictions
+## ✨ Features
 
-Dockerized setup and CI/CD ready structure
+* Predicts customer churn (Yes / No)
+* Returns churn probability score
+* AI-generated explanations for predictions using LLM
+* REST API for model inference
+* Interactive Streamlit web interface
+* Dockerized deployment environment
+* CI/CD pipeline with GitHub Actions
+* Modular backend and frontend architecture
 
-🧠 Key Features
+---
 
-📊 Predicts Customer Churn (Yes / No)
+## ⌨️ Keyboard Shortcuts
 
-📈 Returns Churn Probability
+```
+Ctrl + C   → Stop server
+Enter      → Submit command
+Up Arrow   → Reuse previous command
+```
 
-🤖 Uses Ollama (Gemma 2B) to explain why the customer may churn
+---
 
-🧩 Modular backend and frontend architecture
+## ⚙️ Process
 
-🐳 Docker-ready for deployment
+```
+1. User enters customer details in Streamlit UI
+2. Data is sent to FastAPI backend
+3. ML model predicts churn probability
+4. Ollama LLM generates explanation
+5. Results are displayed to the user
+```
 
-🔁 CI/CD enabled using GitHub Actions
+---
 
-🛠️ Tech Stack
+## 🏗️ How I Built It
 
-Python
+```
+- Trained a customer churn prediction model using XGBoost
+- Saved model and encoders using pickle
+- Built FastAPI backend for inference API
+- Created Streamlit UI for user interaction
+- Integrated Ollama (Gemma 2B) for AI explanations
+- Containerized the application using Docker
+- Implemented CI/CD pipeline using GitHub Actions
+```
 
-Scikit-learn
+---
 
-FastAPI
+## 📚 What I Learned
 
-Streamlit
+```
+- End-to-end ML deployment workflow
+- FastAPI backend development for ML models
+- Streamlit dashboard creation
+- Docker containerization and orchestration
+- CI/CD automation using GitHub Actions
+- Integrating LLMs into traditional ML systems
+- Model serving and API design
+```
 
-Ollama (Gemma2:2B)
+---
 
-Docker & Docker Compose
+## 🚀 How It Could Be Improved
 
-GitHub Actions (CI/CD)
+```
+- Deploy to cloud platforms (AWS, GCP, Azure)
+- Add user authentication system
+- Implement model monitoring and logging
+- Add real-time database integration
+- Improve UI/UX with advanced visualization
+- Use larger LLM for more accurate explanations
+```
 
-🦙 What is Ollama used for?
+---
 
-Ollama is used to run a local Large Language Model (Gemma 2B) that:
+## ▶️ How to Run the Project
 
-Explains churn predictions in simple English
+### Clone Repository
 
-Helps non-technical users understand model output
+```bash
+git clone https://github.com/yourusername/customer-churn-fastapi.git
+cd customer-churn-fastapi
+```
 
-Adds an AI assistant layer to a traditional ML system
+### Install Dependencies
 
+```bash
+pip install -r requirements.txt
+```
 
-📁 Project Structure
+### Start FastAPI Server
+
+```bash
+uvicorn app:app --reload
+```
+
+API Docs:
+http://127.0.0.1:8000/docs
+
+### Start Streamlit App
+
+```bash
+streamlit run streamlit_app.py
+```
+
+---
+
+## 🐳 Run with Docker
+
+```bash
+docker-compose up --build
+```
+
+FastAPI: http://localhost:8000
+Streamlit: http://localhost:8501
+
+---
+
+## 📂 Project Structure
+
+```
 customer-churn-fastapi/
+│
 ├── app.py                     # FastAPI backend
-├── streamlit_app.py           # Streamlit UI
+├── streamlit_app.py           # Streamlit frontend
 ├── customer_churn_model.pkl   # Trained ML model
 ├── encoders.pkl               # Feature encoders
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
-├── .github/workflows/ci.yml   # CI/CD pipeline
+│
+├── .github/workflows/
+│   └── ci.yml                 # CI/CD pipeline
+│
 └── README.md
-
+```
 
 ---
 
-## Run Locally
+## ⭐ About
 
-### 1. Install Dependencies
-```bash
-pip install -r requirements.txt
-2. Start FastAPI
-bash
-Copy code
-uvicorn app:app --reload
-API Docs: http://127.0.0.1:8000/docs
-
-3. Start Streamlit
-bash
-Copy code
-streamlit run streamlit_app.py
-Run with Docker
-bash
-Copy code
-docker-compose up --build
-FastAPI: http://localhost:8000
-
-Streamlit: http://localhost:8501
-
-CI/CD Pipeline
-Triggered on every push to the main branch
-
-Automatically builds and pushes Docker images to DockerHub
-
-Docker Image:
-
-bash
-Copy code
-vinayak533/customer-churn-fastapi:latest
-Author
-Vinayak K V
-BCA Graduate | Aspiring Data Scientist
-GitHub: https://github.com/vinayak533
-
+A production-ready machine learning system for predicting customer churn with AI-powered explanations using FastAPI, Streamlit, Docker, CI/CD, and Ollama.
